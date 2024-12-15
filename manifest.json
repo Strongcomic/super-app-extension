@@ -1,0 +1,11 @@
+{
+  "name": "SAE v1",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "management"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
