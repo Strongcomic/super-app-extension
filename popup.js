@@ -35,7 +35,20 @@ const lang = {
 let currentLang = 'ru';
 let currentCategory = 'all';
 let currentSearchTerm = '';
+
 let customFilters = [];
+const savedFilters = localStorage.getItem('customFilters');
+if (savedFilters) {
+    try {
+        customFilters = JSON.parse(savedFilters);
+        if (!Array.isArray(customFilters)) {
+            customFilters = [];
+        }
+    } catch(e) {
+        customFilters = [];
+    }
+}
+
 let allExtensions = [];
 
 const vpnListContainer = document.getElementById("vpnList");
@@ -160,6 +173,7 @@ function renderCustomFilters() {
         removeBtn.textContent = lang[currentLang].removeFilter;
         removeBtn.addEventListener('click', () => {
             customFilters.splice(index, 1);
+            localStorage.setItem('customFilters', JSON.stringify(customFilters));
             renderCustomFilters();
             if (currentCategory === 'custom') renderExtensions();
         });
@@ -174,6 +188,7 @@ chrome.management.getAll((extensions) => {
     const currentId = chrome.runtime.id;
     allExtensions = extensions.filter(ext => ext.id !== currentId);
     renderExtensions();
+    renderCustomFilters();
 });
 
 langRuBtn.addEventListener('click', () => {
@@ -201,6 +216,7 @@ addFilterBtn.addEventListener('click', () => {
     const newFilter = prompt(promptMessage);
     if (newFilter && newFilter.trim()) {
         customFilters.push(newFilter.trim().toLowerCase());
+        localStorage.setItem('customFilters', JSON.stringify(customFilters));
         renderCustomFilters();
         if (currentCategory === 'custom') renderExtensions();
     }
