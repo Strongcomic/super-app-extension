@@ -36,6 +36,29 @@ body {
     color: #0078d7;
 }
 
+.controls {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 10px;
+    background: #fafafa;
+    border-bottom: 1px solid #ccc;
+}
+
+.controls select,
+.controls input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 14px;
+    background: #fff;
+    outline: none;
+}
+
+.controls input {
+    flex: 1;
+}
+
 .content {
     padding: 15px;
 }
