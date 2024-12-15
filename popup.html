@@ -19,11 +19,18 @@
         <option value="all">All</option>
         <option value="vpn">VPN</option>
         <option value="adblock">Adblock</option>
-        <option value="password">Password Managers</option>
+        <option value="custom">My Filters</option>
     </select>
     <input type="text" id="searchInput" placeholder="Search...">
 </div>
 <div class="content">
+    <div id="customFiltersSection" class="custom-filters-section" style="display: none;">
+        <div class="filters-header">
+            <h2 id="customFiltersTitle">My Filters</h2>
+            <button id="addFilterBtn">Add Filter</button>
+        </div>
+        <div id="customFiltersContainer" class="custom-filters-container"></div>
+    </div>
     <div id="vpnList" class="vpn-list"></div>
     <div id="noExtensions" class="no-extensions"></div>
 </div>
